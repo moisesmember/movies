@@ -10,6 +10,8 @@ import { FooterComponent } from './components/footer/footer.component';
 import { ListMovieComponent } from './components/list-movie/list-movie.component';
 import { MovieManagerComponent } from './components/movie-manager/movie-manager.component';
 import { SystemManagerComponent } from './components/system-manager/system-manager.component';
+import { TablesComponent } from './components/movie-manager/tables/tables.component';
+import { MovieInfoComponent } from './components/movie-info/movie-info.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { SystemManagerComponent } from './components/system-manager/system-manag
     FooterComponent,
     ListMovieComponent,
     MovieManagerComponent,
-    SystemManagerComponent
+    SystemManagerComponent,
+    TablesComponent,
+    MovieInfoComponent
   ],
   imports: [
     BrowserModule,

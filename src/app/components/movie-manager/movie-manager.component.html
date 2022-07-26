@@ -1,50 +1,71 @@
 <div class="container">
-
-    <form>
-        <div class="form-group">
-        <label for="nome">Nome</label>
-        <input type="text" class="form-control" name="nome" id="nome" required>
+    
+    <form>            
+        <div class="form-group row">   
+            <div class="col-md-6">
+                <label for="name">Nome</label>
+                <input type="text" class="form-control" name="name" id="name" required>
+            </div>                 
+            <div class="col-md-2">
+                <label for="year">Ano de Lan&ccedil;amento</label>
+                <input type="number" class="form-control" name="year" id="year" required>
+            </div>
+            <div class="col-md-4">
+                <label for="url">Anexar Capa do Filme</label>
+                <input type="file" class="form-control" name="url" id="url" required>                    
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-6">
+                <label for="sinopse">Sinopse</label>
+                <textarea class="form-control" rows="5" name="sinopse" id="sinopse"></textarea>
+            </div>
+            <div class="col-md-6">
+                <label for="description">Descri&ccedil;&atilde;o</label>
+                <textarea class="form-control" rows="5" name="description" id="description"></textarea>
+            </div>
         </div>
 
-        <div class="form-group">
-        <label for="tipo">Tipo</label>
-        <select class="form-control" name="tipo" id="tipo">
-            <option value="1">Pessoa física</option>
-            <option value="2">Pessoa jurídica</option>
-        </select>
-        </div>
+        <div class="form-group row">
+            <div class="col-md-6">
+                <label for="author">Ator(es) principais</label>
+                <textarea class="form-control" rows="3" name="observacao" id="author"></textarea>
+            </div>
+            <div class="col-md-6">
+                <label for="genre">G&ecirc;nero</label>                
+                <select class="form-control" aria-label="Default select example" name="genre">
+                    <option selected>Open this select menu</option>
+                    <option value="1">Drama</option>
+                    <option value="2">Romance</option>
+                    <option value="3">Terror</option>
+                    <option value="3">Ação</option>
+                    <option value="3">Comédia</option>
+                  </select>
 
-        <div class="form-group">
-        <label>Gênero</label>
+            </div>
+        </div>
+    <!--
+        <app-tables></app-tables>
+    -->
 
-        <div class="form-check">
-            <input class="form-check-input" type="radio" name="genero" id="masculino" [value]="1">
-            <label class="form-check-label" for="masculino">Masculino</label>
-        </div>
-        <div class="form-check">
-            <input class="form-check-input" type="radio" name="genero" id="feminino" [value]="2">
-            <label class="form-check-label" for="feminino">Feminino</label>
-        </div>
-        </div>
-
-        <div class="form-group">
-        <label for="dataNascimento">Data de nascimento</label>
-        <input type="date" class="form-control" name="dataNascimento" id="dataNascimento">
-        </div>
-
-        <div class="form-group">
-        <label for="observacao">Observação</label>
-        <textarea class="form-control" rows="3" name="observacao" id="observacao"></textarea>
-        </div>
-
-        <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="inativo" id="inativo">
-        <label class="form-check-label" for="inativo">Inativo</label>
-        </div>
-
-        <input type="submit" class="btn btn-primary mt-4" value="Salvar">
+        <input type="submit" id="button" class="btn btn-secondary1 mt-4" style="background: #fd7e14;color: #000;" >
         <a href="#" class="btn btn-secondary mt-4 ml-2">Cancelar</a>
 
     </form>
-
+        
 </div>
+
+<script src="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.js"></script>
+<script>
+    $(document).ready(function(){
+    
+    var multipleCancelButton = new Choices('#choices-multiple-remove-button', {
+       removeItemButton: true,
+       maxItemCount:5,
+       searchResultLimit:5,
+       renderChoiceLimit:5
+     }); 
+    
+    
+});
+</script>
