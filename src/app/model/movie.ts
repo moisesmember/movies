@@ -5,10 +5,14 @@ export class Movie {
     sinopse!: string;
     avaliation!: number;
     year!: number;
-    id_collaborator!: number;
+    url!: string;
+    collaborator_id!: number;
     name_collaborator!: string;
     username_collaborator!: string;
     password_collaborator!: string;
     authors!: string;
     genres!: string;
+    id_user!: number;
+    name_user!: string;
+    username!: string;
 }

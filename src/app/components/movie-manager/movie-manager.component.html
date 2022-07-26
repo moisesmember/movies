@@ -1,54 +1,61 @@
 <div class="container">
     
-    <form>            
+    <form [formGroup]="formMovie" (ngSubmit)="onSubmit()" novalidate>            
         <div class="form-group row">   
             <div class="col-md-6">
                 <label for="name">Nome</label>
-                <input type="text" class="form-control" name="name" id="name" required>
+                <input type="text" class="form-control" name="name" id="name" formControlName="name" required>
             </div>                 
             <div class="col-md-2">
                 <label for="year">Ano de Lan&ccedil;amento</label>
-                <input type="number" class="form-control" name="year" id="year" required>
+                <input type="number" class="form-control" name="year" id="year" formControlName="year" required>
             </div>
             <div class="col-md-4">
                 <label for="url">Anexar Capa do Filme</label>
-                <input type="file" class="form-control" name="url" id="url" required>                    
+                <input type="file" class="form-control" name="url" id="url" formControlName="url" required>                    
             </div>
         </div>
         <div class="form-group row">
             <div class="col-md-6">
                 <label for="sinopse">Sinopse</label>
-                <textarea class="form-control" rows="5" name="sinopse" id="sinopse"></textarea>
+                <textarea class="form-control" rows="5" name="sinopse" id="sinopse" formControlName="sinopse"></textarea>
             </div>
             <div class="col-md-6">
                 <label for="description">Descri&ccedil;&atilde;o</label>
-                <textarea class="form-control" rows="5" name="description" id="description"></textarea>
+                <textarea class="form-control" rows="5" name="description" id="description" formControlName="description"></textarea>
             </div>
         </div>
 
         <div class="form-group row">
             <div class="col-md-6">
                 <label for="author">Ator(es) principais</label>
-                <textarea class="form-control" rows="3" name="observacao" id="author"></textarea>
+                <textarea class="form-control" rows="3" name="observacao" id="author" formControlName="authors"></textarea>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6"><!--
                 <label for="genre">G&ecirc;nero</label>                
-                <select class="form-control" aria-label="Default select example" name="genre">
+                <select class="form-control" aria-label="Default select example" name="genre" formControlName="genre">
                     <option selected>Open this select menu</option>
                     <option value="1">Drama</option>
                     <option value="2">Romance</option>
                     <option value="3">Terror</option>
                     <option value="3">Ação</option>
                     <option value="3">Comédia</option>
-                  </select>
+                  </select> -->
 
+                  <mat-label>G&ecirc;nero<span style="color:red">*</span></mat-label>
+                  <mat-select class="form-control" placeholder="Escolha um Gênero"  name="genre" formControlName="genre" >
+                    <mat-option *ngFor="let genres of optionGenre" [value]="genres.name">
+                        {{genres.name}} 
+                    </mat-option>  
+                  </mat-select>
             </div>
         </div>
     <!--
         <app-tables></app-tables>
     -->
 
-        <input type="submit" id="button" class="btn btn-secondary1 mt-4" style="background: #fd7e14;color: #000;" >
+        <!--<input type="submit" id="button" class="btn btn-secondary1 mt-4" style="background: #fd7e14;color: #000;" > -->
+        <button type="submit" id="button" class="btn btn-secondary1 mt-4" style="background: #fd7e14;color: #000;">Salvar</button>
         <a href="#" class="btn btn-secondary mt-4 ml-2">Cancelar</a>
 
     </form>
