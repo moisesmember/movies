@@ -20,6 +20,7 @@ import { MovieManagerComponent } from './components/movie-manager/movie-manager.
 import { SystemManagerComponent } from './components/system-manager/system-manager.component';
 import { TablesComponent } from './components/movie-manager/tables/tables.component';
 import { MovieInfoComponent } from './components/movie-info/movie-info.component';
+import { AuthenticationComponent } from './components/authentication/authentication.component';
 
 registerLocaleData(localePt);
 
@@ -75,7 +76,8 @@ const customNotifierOptions: NotifierOptions = {
     MovieManagerComponent,
     SystemManagerComponent,
     TablesComponent,
-    MovieInfoComponent
+    MovieInfoComponent,
+    AuthenticationComponent
   ],
   imports: [
     BrowserModule,
