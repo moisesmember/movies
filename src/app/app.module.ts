@@ -8,7 +8,7 @@ import { DatePipe } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
-
+import { NotifierModule, NotifierOptions } from 'angular-notifier';
 import { MatFormFieldModule } from '@angular/material/form-field';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -22,6 +22,49 @@ import { TablesComponent } from './components/movie-manager/tables/tables.compon
 import { MovieInfoComponent } from './components/movie-info/movie-info.component';
 
 registerLocaleData(localePt);
+
+// *******************************************************************************
+//
+const customNotifierOptions: NotifierOptions = {
+  position: {
+      horizontal: {
+          position: 'left',
+          distance: 12
+      },
+      vertical: {
+          position: 'bottom',
+          distance: 12,
+          gap: 10
+      }
+  },
+  theme: 'material',
+  behaviour: {
+      autoHide: 5000,
+      onClick: false,
+      onMouseover: 'pauseAutoHide',
+      showDismissButton: true,
+      stacking: 4
+  },
+  animations: {
+      enabled: true,
+      show: {
+          preset: 'slide',
+          speed: 300,
+          easing: 'ease'
+      },
+      hide: {
+          preset: 'fade',
+          speed: 300,
+          easing: 'ease',
+          offset: 50
+      },
+      shift: {
+          speed: 300,
+          easing: 'ease'
+      },
+      overlap: 150
+  }
+};
 
 @NgModule({
   declarations: [
@@ -42,7 +85,8 @@ registerLocaleData(localePt);
     FormsModule,
     MatFormFieldModule,
     MatSelectModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NotifierModule.withConfig(customNotifierOptions),
   ],
   providers: [{provide:LOCALE_ID, useValue:'pt-BR'}, DatePipe],
   bootstrap: [AppComponent]

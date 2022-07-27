@@ -31,17 +31,7 @@
                 <label for="author">Ator(es) principais</label>
                 <textarea class="form-control" rows="3" name="observacao" id="author" formControlName="authors"></textarea>
             </div>
-            <div class="col-md-6"><!--
-                <label for="genre">G&ecirc;nero</label>                
-                <select class="form-control" aria-label="Default select example" name="genre" formControlName="genre">
-                    <option selected>Open this select menu</option>
-                    <option value="1">Drama</option>
-                    <option value="2">Romance</option>
-                    <option value="3">Terror</option>
-                    <option value="3">Ação</option>
-                    <option value="3">Comédia</option>
-                  </select> -->
-
+            <div class="col-md-6">
                   <mat-label>G&ecirc;nero<span style="color:red">*</span></mat-label>
                   <mat-select class="form-control" placeholder="Escolha um Gênero"  name="genre" formControlName="genre" >
                     <mat-option *ngFor="let genres of optionGenre" [value]="genres.name">
@@ -50,11 +40,10 @@
                   </mat-select>
             </div>
         </div>
+        
     <!--
         <app-tables></app-tables>
     -->
-
-        <!--<input type="submit" id="button" class="btn btn-secondary1 mt-4" style="background: #fd7e14;color: #000;" > -->
         <button type="submit" id="button" class="btn btn-secondary1 mt-4" style="background: #fd7e14;color: #000;">Salvar</button>
         <a href="#" class="btn btn-secondary mt-4 ml-2">Cancelar</a>
 
@@ -62,17 +51,4 @@
         
 </div>
 
-<script src="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.js"></script>
-<script>
-    $(document).ready(function(){
-    
-    var multipleCancelButton = new Choices('#choices-multiple-remove-button', {
-       removeItemButton: true,
-       maxItemCount:5,
-       searchResultLimit:5,
-       renderChoiceLimit:5
-     }); 
-    
-    
-});
-</script>
+<notifier-container></notifier-container>

@@ -44,7 +44,7 @@ export class MovieService {
   }
 
   public updateMovie( movie: any ): Observable<Movie>{
-    return this.http.patch<Movie>(`${this.apiURL}/movies`,JSON.stringify(movie),this.httpOptions)
+    return this.http.put<Movie>(`${this.apiURL}movies/${movie.id}`,JSON.stringify(movie),this.httpOptions)
                     .pipe(
                       retry(1),
                       catchError(this.handleError)

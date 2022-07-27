@@ -11,7 +11,7 @@ export class Movie {
     username_collaborator!: string;
     password_collaborator!: string;
     authors!: string;
-    genres!: string;
+    genre!: string;
     id_user!: number;
     name_user!: string;
     username!: string;
