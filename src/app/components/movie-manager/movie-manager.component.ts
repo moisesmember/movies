@@ -1,6 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NotifierService } from 'angular-notifier';
 import { debounce, min } from 'lodash';
@@ -23,6 +23,7 @@ export class MovieManagerComponent implements OnInit {
   optionGenre: Genre[] = [
     { name: `` },
     { name: `AÇÃO` },
+    { name: `AVENTURA` },
     { name: `COMÉDIA` },
     { name: `DRAMA` },
     { name: `INFANTIL` },
@@ -43,8 +44,8 @@ export class MovieManagerComponent implements OnInit {
 
   ngOnInit(): void {
 
-    localStorage.setItem('action', 'find');
-
+    //localStorage.setItem('action', 'find');
+    
     this.action = localStorage.getItem('action');
     
     switch (this.action) {
@@ -65,18 +66,18 @@ export class MovieManagerComponent implements OnInit {
     this.restApi.findMovieById( id )
                   .subscribe((data: Movie[]) => {
                       console.log( JSON.stringify(data) );
-                       
+                    
                      this.formMovie.setValue({
-                      id:                data[0].id,
-                      name:              data[0].name,
-                      description:       data[0].description,
-                      sinopse:           data[0].sinopse,
-                      avaliation:        data[0].avaliation,
-                      authors:           data[0].authors,
-                      genre:             data[0].genre,
-                      year:              data[0].year,
-                      collaborator_id:   data[0].collaborator_id,
-                      url:               data[0].url,
+                        id:                data[0].id,
+                        name:              data[0].name,
+                        description:       data[0].description,
+                        sinopse:           data[0].sinopse,
+                        avaliation:        data[0].avaliation,
+                        authors:           data[0].authors,
+                        genre:             data[0].genre,
+                        year:              data[0].year,
+                        collaborator_id:   data[0].collaborator_id,
+                        url:               data[0].url,
                      }); 
 
                   });
@@ -177,5 +178,22 @@ export class MovieManagerComponent implements OnInit {
 	public hideOldestNotification(): void {
 		this.notifier.hideOldest();
 	}
+
+  inputFileChange( event: any ){
+    console.log( `adicionado algo` )
+
+    console.log( event.target.files[0] )
+    // Verifica se tem algum arquivo
+    if( event.target.files && event.target.files[0] ){
+      const foto = event.target.files[0];
+
+      const formData = new FormData();
+      formData.append('imagem', foto);
+
+      this.restApi.uploadImage( formData ).subscribe((data: {}) => {
+        console.log( data )
+      });
+    }
+  }
 
 }

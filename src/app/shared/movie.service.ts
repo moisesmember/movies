@@ -51,6 +51,19 @@ export class MovieService {
                     );
   } 
 
+  public uploadImage( file: FormData ){
+    return this.http.post<FormData>(`${this.apiURL}images`, file, {
+                                                              headers: new HttpHeaders({
+                                                                'Content-Type': 'multipart/form-data',
+                                                                'enctype': 'multipart/form-data'
+                                                              })
+                                                            })
+                    .pipe(
+                      retry(1),
+                      catchError(this.handleError)
+                    );
+  }
+
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { MovieService } from 'src/app/shared/movie.service';
 
 @Component({
   selector: 'app-movie-info',
@@ -7,7 +9,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MovieInfoComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    public restApi: MovieService,
+    public router: Router,
+  ) { }
 
   ngOnInit(): void {
   }
