@@ -18,8 +18,8 @@ export class CollaboratorService {
     })
   }
 
-  public saveCollaborator( movie: any ): Observable<Collaborator>{
-    return this.http.post<Collaborator>(`${this.apiURL}collaborators`,JSON.stringify(movie),this.httpOptions)
+  public saveCollaborator( collaborator: any ): Observable<Collaborator>{
+    return this.http.post<Collaborator>(`${this.apiURL}collaborators`,JSON.stringify(collaborator),this.httpOptions)
                     .pipe(
                       retry(1),
                       catchError(this.handleError)
@@ -49,6 +49,15 @@ export class CollaboratorService {
                       catchError(this.handleError)
                     );
   } 
+
+  public findByUsername(username?: String, password?: String): Observable<Collaborator[]>{ 
+    return this.http.post<Collaborator[]>(`${this.apiURL}collaborators_findByUsername`,JSON.stringify({username: username, password: password}),this.httpOptions)
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      );
+                              
+  }
 
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {

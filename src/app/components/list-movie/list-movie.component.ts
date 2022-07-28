@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { debounce } from 'lodash';
 import { Movie } from 'src/app/model/movie';
 import { MovieService } from '../../shared/movie.service';
 
@@ -14,7 +15,7 @@ export class ListMovieComponent implements OnInit {
 
   constructor(
     public restApi: MovieService,
-    public router: Router,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
@@ -33,7 +34,10 @@ export class ListMovieComponent implements OnInit {
 
   info( id: number ){
     localStorage.setItem('id', `${id}`)
-    this.router.navigate(['/info']);
+    let waitingNav = debounce(() => {
+      this.router.navigate(['info']);
+    }, 3000);
+    waitingNav();
   }
 
 }

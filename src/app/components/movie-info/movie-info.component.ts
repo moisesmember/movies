@@ -11,7 +11,7 @@ export class MovieInfoComponent implements OnInit {
 
   constructor(
     public restApi: MovieService,
-    public router: Router,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {

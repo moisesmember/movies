@@ -21,8 +21,8 @@ export class AuthenticationService {
 
     // Login
   // { username: 'username', password: '*******' }
-  public login(username?: String, password?: String): Observable<Collaborator>{ 
-    return this.http.post<Collaborator>(`${this.apiURL}collaborators_login`,JSON.stringify({username: username, password: password}),this.httpOptions)
+  public login(username?: String, password?: String): Observable<Object>{ 
+    return this.http.post<Object>(`${this.apiURL}collaborators_login`,JSON.stringify({username: username, password: password}),this.httpOptions)
       .pipe(
         retry(1),
         catchError(this.handleError)

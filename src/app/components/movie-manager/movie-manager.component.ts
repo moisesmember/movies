@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NotifierService } from 'angular-notifier';
 import { debounce, min } from 'lodash';
+import { Collaborator } from 'src/app/model/collaborator';
 import { Movie } from 'src/app/model/movie';
 
 import { Genre } from '../../model/genre';
@@ -18,6 +19,7 @@ export class MovieManagerComponent implements OnInit {
 
   formMovie!: FormGroup;
   action: string | null = 'save'; 
+  collaborator?: Collaborator;
   private readonly notifier: NotifierService;
 
   optionGenre: Genre[] = [
@@ -40,6 +42,11 @@ export class MovieManagerComponent implements OnInit {
               private activatedRoute: ActivatedRoute,) {
                 this.notifier = notifierService;
                 this.validForm();
+                if( typeof sessionStorage.getItem('session') !=  null){      
+                  this.collaborator = JSON.parse( sessionStorage.getItem('session') as any ) as Collaborator;
+                  //console.log( JSON.parse( sessionStorage.getItem('session') as any ).name );
+                  //console.log( this.collaborator!.username );     
+                }
               }
 
   ngOnInit(): void {
@@ -157,7 +164,7 @@ export class MovieManagerComponent implements OnInit {
       avaliation:       [0, Validators.required],
       authors:          ['', Validators.required],
       year:             [0, Validators.required],
-      collaborator_id:  [1, Validators.required],
+      collaborator_id:  [this.collaborator!.id, Validators.required],
       url:              ['', Validators.required],
     });
   };
