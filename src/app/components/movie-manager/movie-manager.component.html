@@ -1,10 +1,13 @@
 MOISES
 <div class="container">
+    <!--<form [formGroup]="formMovie" (ngSubmit)="onSubmit()" novalidate></form>-->
+
     <form [formGroup]="formMovie" (ngSubmit)="onSubmit()" novalidate>            
         <div class="form-group row">   
             <div class="col-md-6">
                 <label for="name">Nome</label>
                 <input type="text" class="form-control" name="name" id="name" formControlName="name" required>
+                
             </div>                 
             <div class="col-md-2">
                 <label for="year">Ano de Lan&ccedil;amento</label>
@@ -12,7 +15,7 @@ MOISES
             </div>
             <div class="col-md-4">
                 <label for="url">Anexar Capa do Filme</label>
-                <input type="file"  (change)="inputFileChange($event)" class="form-control" name="url" id="url" formControlName="url" required>                    
+                <input type="file"  (change)="inputFileChange($event)" class="form-control" name="url" id="url" required>                    
             </div>
         </div>
         <div class="form-group row">
