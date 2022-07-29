@@ -11,7 +11,7 @@ const routes: Routes = [
   { path: '', component: AuthenticationComponent, pathMatch: 'full' },
   { path: 'login', component: AuthenticationComponent }, 
   { path: 'list', component: ListMovieComponent, canActivate: [ApprouteguardService]},
-  { path: 'movie', component: MovieManagerComponent, canActivate: [ApprouteguardService] },
+  { path: 'movie', component: MovieManagerComponent, canActivate: [ApprouteguardService]},
   { path: 'info', component: MovieInfoComponent, canActivate: [ApprouteguardService] },
   { path: '**', redirectTo: '' }
 ];

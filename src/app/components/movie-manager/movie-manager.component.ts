@@ -20,6 +20,7 @@ export class MovieManagerComponent implements OnInit {
   formMovie!: FormGroup;
   action: string | null = 'save'; 
   collaborator?: Collaborator;
+  id!:number;
   private readonly notifier: NotifierService;
 
   optionGenre: Genre[] = [
@@ -40,26 +41,25 @@ export class MovieManagerComponent implements OnInit {
               public formbuilder: FormBuilder,
               public dataFormata: DatePipe,
               private activatedRoute: ActivatedRoute,) {
-                this.notifier = notifierService;
-                this.validForm();
+                this.notifier = notifierService;                
                 if( typeof sessionStorage.getItem('session') !=  null){      
                   this.collaborator = JSON.parse( sessionStorage.getItem('session') as any ) as Collaborator;
-                  //console.log( JSON.parse( sessionStorage.getItem('session') as any ).name );
-                  //console.log( this.collaborator!.username );     
+                  this.validForm();   
                 }
               }
 
   ngOnInit(): void {
 
     //localStorage.setItem('action', 'find');
-    
     this.action = localStorage.getItem('action');
     
     switch (this.action) {
       case 'find':
 
-
-          this.findMovieById( 1 );
+        if( localStorage.getItem('id') != null ){      
+          this.id = JSON.parse( localStorage.getItem('id') as any ) as number;
+          this.findMovieById( this.id );
+        }         
 
         break;
     
@@ -164,6 +164,7 @@ export class MovieManagerComponent implements OnInit {
       avaliation:       [0, Validators.required],
       authors:          ['', Validators.required],
       year:             [0, Validators.required],
+      //collaborator_id:  [15, Validators.required],
       collaborator_id:  [this.collaborator!.id, Validators.required],
       url:              ['', Validators.required],
     });

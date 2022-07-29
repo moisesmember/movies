@@ -1,12 +1,12 @@
 <main>
     <div class="filme-principal">
         <div class="container">
-            <h3 class="titulo">HOUSE OF CARDS</h3>
-            <p class="descricao">Nada pode impedir o político sem escrúpulos Frank Underwood de conquistar Washington. Assista agora a nova temporada de House of Cards que está imperdível.</p>
+            <h3 class="titulo">{{ movie[0]!.name }}</h3>
+            <p class="descricao">{{ movie[0]!.sinopse }}</p>
             <div class="botoes">
-                <button role="button" class="botao">
-                    <i class="fas fa-play"></i>
-                    ASSISTIR AGORA
+                <button role="button" class="botao" (click)="update()" >
+                    <i class="fa fa-edit"></i>
+                    ATUALIZAR
                 </button>
                 <button role="button" class="botao">
                     <i class="fas fa-info-circle"></i>
@@ -18,16 +18,30 @@
 </main>
 
 <div class="carrosel-filmes">
-<div class="container">
-    <div class="row">
-        <div class="col">
-            <p>World War I · World War I or the First World War, often abbreviated as WWI or WW1, began on 28 July 1914 and ended on 11 November 1918</p>
-        </div>
-        <div class="col">
-            <p>
-                World War I · World War I or the First World War, often abbreviated as WWI or WW1, began on 28 July 1914 and ended on 11 November 1918
-            </p>
+    <div class="container">
+        <div class="row">
+            Avaliação: &#9733; &#9733; &#9733; &#9733; &#9733; &nbsp;&nbsp;&nbsp;&nbsp; Gênero: {{ movie[0]!.genre }}
         </div>
     </div>
 </div>
+
+<div class="carrosel-filmes">
+    <div class="container" id="body">        
+        <div class="row" >            
+                <div class="col-sm-8">
+                    <h3>Descrição</h3>
+                    <p>{{ movie[0]!.description }}</p>
+                </div>                        
+        </div>
+
+        <div class="row" id="ath">
+            <div class="col-sm-4">
+                <h3>Atore(s) Principal(is)</h3>
+                <p>
+                    {{ movie[0]!.authors }}
+                </p>
+            </div>
+        </div>
+
+    </div>
 </div>

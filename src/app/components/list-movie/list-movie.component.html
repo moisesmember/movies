@@ -2,9 +2,9 @@
 <section class="main-container" >
 <div class="location" id="home">
     <h1 id="home">Últimos adicionados</h1>
-    <div class="box" *ngFor="let mov of movies" (click)="info( mov.id )">
+    <div class="box" *ngFor="let mov of movies" >
         <!--<a href="" ><img src={{mov.url}} alt="" [routerLink]="['/info']"></a>-->
-        <a href="" ><img src={{mov.url}} alt=""></a>
+        <a  (click)="info( mov.id )"><img src={{mov.url}} alt=""></a>
     </div>
 </div>
 

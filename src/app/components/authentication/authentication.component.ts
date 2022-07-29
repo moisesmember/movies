@@ -43,8 +43,7 @@ export class AuthenticationComponent implements OnInit {
   ngOnInit(): void {
     //this.typeForma = localStorage.getItem('typeform');
 
-    console.log( localStorage.getItem('typeform') )
-
+    //console.log( localStorage.getItem('typeform') )
     if( localStorage.getItem('typeform') == null ){
       localStorage.setItem('typeform', 'login');
     }else{

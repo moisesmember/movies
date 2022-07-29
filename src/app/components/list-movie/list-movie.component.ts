@@ -32,11 +32,11 @@ export class ListMovieComponent implements OnInit {
      () => console.log( `Complete` ) );
   }
 
-  info( id: number ){
+  public info( id: number ){    
     localStorage.setItem('id', `${id}`)
     let waitingNav = debounce(() => {
       this.router.navigate(['info']);
-    }, 3000);
+    }, 1000);
     waitingNav();
   }
 
