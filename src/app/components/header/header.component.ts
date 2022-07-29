@@ -31,4 +31,10 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['/']);
   }
 
+  post(){
+    localStorage.removeItem('id');
+    localStorage.setItem('action', 'save');
+    this.router.navigate(['movie']);
+  }
+
 }

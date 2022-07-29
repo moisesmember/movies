@@ -12,7 +12,7 @@
       <a target="_blank" href="https://codepen.io/cb2307/full/NzaOrm">Portfolio</a>   -->     
     </nav>
     <nav class="sub-nav">
-      <a href="#" *ngIf="this.collaborator" [routerLink]="['/movie']">Postar Filme</a>
+      <a href="#" *ngIf="this.collaborator" (click)="post()">Postar Filme</a>
       <a href="#"><i class="fas fa-search sub-nav-logo"></i></a>
       <a href="#"><i class="fas fa-bell sub-nav-logo"></i></a>
       <!--<a href="#">Cadastrar filmes</a>  -->  
