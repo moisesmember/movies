@@ -1,12 +1,47 @@
 <!-- MAIN CONTAINER -->
-<section class="main-container" >
-<div class="location" id="home">
-    <h1 id="home">Últimos adicionados</h1>
-    <div class="box" *ngFor="let mov of movies" >
-        <!--<a href="" ><img src={{mov.url}} alt="" [routerLink]="['/info']"></a>-->
-        <a  (click)="info( mov.id )"><img src={{mov.url}} alt=""></a>
+<section class="main-container" ><!--
+    <div class="location" id="home">
+        <h1 id="home">Últimos adicionados</h1>
+        <div class="box" *ngFor="let mov of movies" >
+            <a (click)="info( mov.id )"><img src={{mov.url}} alt="{{mov.name}}"></a>
+        </div>
+    </div> -->
+    
+    <div class="location">
+        <h1 id="home">Meus filmes postados</h1>
+        <ul id="listMovie">
+            <li class="cardMovie" *ngFor="let mov of movies">
+                <a (click)="info( mov.id )">
+                    <!--<img  src={{mov.url}} alt="{{mov.name}}"> -->                    
+                    <figure>
+                        <img  src={{mov.url}} alt="{{mov.name}}">
+                        <figcaption>
+                            <p>{{ mov.name }}</p>
+                            <p>&#9733; &#9733; &#9733; &#9733; &#9733;</p>
+                        </figcaption>
+                    </figure> 
+                </a>
+            </li>
+        </ul>
+
+        <h1 id="home">Últimos adicionados</h1>
+        <ul id="listMovie">
+            <li class="cardMovie" *ngFor="let mov of movies">
+                <a (click)="info( mov.id )">
+                    <!--<img  src={{mov.url}} alt="{{mov.name}}"> -->                    
+                    <figure>
+                        <img  src={{mov.url}} alt="{{mov.name}}">
+                        <figcaption>
+                            <p>{{ mov.name }}</p>
+                            <p>&#9733; &#9733; &#9733; &#9733; &#9733;</p>
+                        </figcaption>
+                    </figure> 
+                </a>
+            </li>
+        </ul>
     </div>
-</div>
+  
+</section>
 
   <!-- END OF MAIN CONTAINER -->
 

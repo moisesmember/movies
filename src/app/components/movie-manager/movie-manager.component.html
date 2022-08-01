@@ -1,6 +1,5 @@
 MOISES
-<div class="container">
-    <!--<form [formGroup]="formMovie" (ngSubmit)="onSubmit()" novalidate></form>-->
+<div class="container">   
 
     <form [formGroup]="formMovie" (ngSubmit)="onSubmit()" novalidate>            
         <div class="form-group row">   
@@ -16,7 +15,7 @@ MOISES
             <div class="col-md-4">
                 <label for="url">Anexar Capa do Filme</label>
                 <input type="file"  (change)="inputFileChange($event)" class="form-control" name="url" id="url" required>                    
-            </div>
+            </div> 
         </div>
         <div class="form-group row">
             <div class="col-md-6">
@@ -48,7 +47,7 @@ MOISES
         <app-tables></app-tables>
     -->
         <button type="submit" id="button" class="btn btn-secondary1 mt-4" style="background: #fd7e14;color: #000;">Salvar</button>
-        <a href="#" class="btn btn-secondary mt-4 ml-2" [routerLink]="['/info']">Cancelar</a>
+        <a href="#" class="btn btn-secondary mt-4 ml-2" [routerLink]="['/list']">Cancelar</a>
 
     </form>
         

@@ -1,5 +1,5 @@
 <main>
-    <div class="filme-principal">
+    <div class="filme-principal" [ngStyle]="backgroundImage">
         <div class="container">
             <h3 class="titulo">{{ movie[0]!.name }}</h3>
             <p class="descricao">{{ movie[0]!.sinopse }}</p>
@@ -8,9 +8,9 @@
                     <i class="fa fa-edit"></i>
                     ATUALIZAR
                 </button>
-                <button role="button" class="botao">
+                <button role="button" class="botao" [routerLink]="['/list']">
                     <i class="fas fa-info-circle"></i>
-                    MAIS INFORMAÇÕES
+                    TODOS OS FILMES
                 </button>
             </div>
         </div>
@@ -20,7 +20,7 @@
 <div class="carrosel-filmes">
     <div class="container">
         <div class="row">
-            Avaliação: &#9733; &#9733; &#9733; &#9733; &#9733; &nbsp;&nbsp;&nbsp;&nbsp; Gênero: {{ movie[0]!.genre }}
+            Avaliação: &#9733; &#9733; &#9733; &#9733; &#9733; &nbsp;&nbsp;&nbsp;&nbsp; Gênero: {{ movie[0]!.genre }} &nbsp;&nbsp;&nbsp;&nbsp; Ano de Lan&ccedil;amento: {{ movie[0]!.year }} &nbsp;&nbsp;&nbsp;&nbsp; Postado por @{{ movie[0]!.username }}
         </div>
     </div>
 </div>
@@ -29,14 +29,14 @@
     <div class="container" id="body">        
         <div class="row" >            
                 <div class="col-sm-8">
-                    <h3>Descrição</h3>
+                    <h2>Descrição</h2>
                     <p>{{ movie[0]!.description }}</p>
                 </div>                        
         </div>
 
         <div class="row" id="ath">
             <div class="col-sm-4">
-                <h3>Atore(s) Principal(is)</h3>
+                <h2>Atore(s) Principal(is)</h2>
                 <p>
                     {{ movie[0]!.authors }}
                 </p>

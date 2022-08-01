@@ -12,6 +12,7 @@ import { MovieService } from 'src/app/shared/movie.service';
 export class MovieInfoComponent implements OnInit {
   movie!: Movie[];
   id!: number;
+  backgroundImage = {};
   constructor(
     public restApi: MovieService,
     private router: Router,
@@ -28,9 +29,11 @@ export class MovieInfoComponent implements OnInit {
     this.restApi.findMovieById( id )
                   .subscribe((data: Movie[]) => {
                       console.log( JSON.stringify(data) );
-                      this.movie = data
-
-                      console.log( this.movie[0]!.name )
+                      this.movie = data                      
+                      //console.log( this.movie[0]!.name )
+                      this.backgroundImage = {
+                        'background-image' : `url(' ${this.movie[0]!.url}  ')`
+                      }
                     });
 
                   }, 1000 );
