@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApprouteguardService implements CanActivate {
-
+  private refresh: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   constructor(private router: Router) { }
 
   canActivate(route: ActivatedRouteSnapshot): Observable<boolean> | Promise<boolean> | boolean {
@@ -17,5 +17,13 @@ export class ApprouteguardService implements CanActivate {
         this.router.navigate(['/'])
         return false;
     }
-}
+  }
+
+  public getRefresh(): Observable<boolean> {
+    return this.refresh.asObservable();
+  }
+  
+  public setRefresh(value: boolean): void {  
+    this.refresh.next(value);
+  }
 }

@@ -4,9 +4,13 @@
             <h3 class="titulo">{{ movie[0]!.name }}</h3>
             <p class="descricao">{{ movie[0]!.sinopse }}</p>
             <div class="botoes">
-                <button role="button" class="botao" (click)="update()" >
+                <button *ngIf="isProprietary" role="button" class="botao" (click)="update()" >
                     <i class="fa fa-edit"></i>
                     ATUALIZAR
+                </button>
+                <button *ngIf="isProprietary" role="button" class="botao" (click)="delete()" >
+                    <i class="fa fa-trash"></i>
+                    EXCLUIR
                 </button>
                 <button role="button" class="botao" [routerLink]="['/list']">
                     <i class="fas fa-info-circle"></i>

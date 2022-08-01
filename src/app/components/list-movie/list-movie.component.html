@@ -10,8 +10,8 @@
     <div class="location">
         <h1 id="home">Meus filmes postados</h1>
         <ul id="listMovie">
-            <li class="cardMovie" *ngFor="let mov of movies">
-                <a (click)="info( mov.id )">
+            <li class="cardMovie" *ngFor="let mov of myMovies">
+                <a (click)="info( mov.id, true )">
                     <!--<img  src={{mov.url}} alt="{{mov.name}}"> -->                    
                     <figure>
                         <img  src={{mov.url}} alt="{{mov.name}}">
@@ -27,7 +27,7 @@
         <h1 id="home">Últimos adicionados</h1>
         <ul id="listMovie">
             <li class="cardMovie" *ngFor="let mov of movies">
-                <a (click)="info( mov.id )">
+                <a (click)="info( mov.id, false )">
                     <!--<img  src={{mov.url}} alt="{{mov.name}}"> -->                    
                     <figure>
                         <img  src={{mov.url}} alt="{{mov.name}}">

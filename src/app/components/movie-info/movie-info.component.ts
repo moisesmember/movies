@@ -12,6 +12,7 @@ import { MovieService } from 'src/app/shared/movie.service';
 export class MovieInfoComponent implements OnInit {
   movie!: Movie[];
   id!: number;
+  isProprietary: Boolean = false;
   backgroundImage = {};
   constructor(
     public restApi: MovieService,
@@ -19,8 +20,9 @@ export class MovieInfoComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    if( localStorage.getItem('id') != null ){      
+    if( localStorage.getItem('id') != null && localStorage.getItem('proprietary') != null ){      
       this.id = JSON.parse( localStorage.getItem('id') as any ) as number;
+      this.isProprietary = JSON.parse( localStorage.getItem('proprietary') as any ) as Boolean;
       this.findMovieById( this.id );
     }
   }
@@ -44,5 +46,13 @@ export class MovieInfoComponent implements OnInit {
       this.router.navigate(['movie']);
     }, 1000);
     waitingNav();
+  }
+
+  delete(){
+    //this.id
+    this.restApi.deleteMovie( this.id )
+          .subscribe((data: any) => {
+            this.router.navigate(['list']);
+          });
   }
 }

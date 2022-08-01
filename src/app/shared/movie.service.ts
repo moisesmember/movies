@@ -54,7 +54,15 @@ export class MovieService {
                       retry(1),
                       catchError(this.handleError)
                     );
-  } 
+  }
+  
+  public deleteMovie( id: number ): Observable<any>{
+    return this.http.delete<any>(`${this.apiURL}movies/${id}`,{})
+                    .pipe(
+                      retry(1),
+                      catchError(this.handleError)
+                    );
+  }
 
   public uploadImage( file: FormData ){
     return this.http.post<FormData>(`${this.apiURL}images`, file, {

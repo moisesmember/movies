@@ -5,11 +5,6 @@
     </div>      
     <nav class="main-nav">                
       <a href="#home" [routerLink]="['/list']" style="font-size: 25px;">Cat&aacute;logo de filmes</a>
-      <!--<a href="#tvShows">TV Shows</a>
-      <a href="#movies">Movies</a>
-      <a href="#originals">Originals</a>
-      <a href="#">Recently Added</a>
-      <a target="_blank" href="https://codepen.io/cb2307/full/NzaOrm">Portfolio</a>   -->     
     </nav>
     <nav class="sub-nav">
       <a  *ngIf="this.collaborator" (click)="post()">Postar Filme</a>
@@ -17,7 +12,7 @@
       <a href="#"><i class="fas fa-bell sub-nav-logo"></i></a>
       <!--<a href="#">Cadastrar filmes</a>  -->  
                     
-      <a href="#">Usuário: {{ collaborator!.username }} </a>  
+      <a href="#">Usuário: {{ collaborator!.username }} </a>    
       <a href="#" (click)="logoff()">Sair</a>      
     </nav>      
   </header>
