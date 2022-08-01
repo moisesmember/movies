@@ -1,9 +1,10 @@
 import { DatePipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NotifierService } from 'angular-notifier';
 import { debounce, min } from 'lodash';
+import { Collaborator } from 'src/app/model/collaborator';
 import { Movie } from 'src/app/model/movie';
 
 import { Genre } from '../../model/genre';
@@ -18,6 +19,10 @@ export class MovieManagerComponent implements OnInit {
 
   formMovie!: FormGroup;
   action: string | null = 'save'; 
+  collaborator?: Collaborator;
+  id!:number;
+  submitted = false;
+  private file: File | null = null;
   private readonly notifier: NotifierService;
 
   optionGenre: Genre[] = [
@@ -37,22 +42,26 @@ export class MovieManagerComponent implements OnInit {
               notifierService: NotifierService,
               public formbuilder: FormBuilder,
               public dataFormata: DatePipe,
-              private activatedRoute: ActivatedRoute,) {
-                this.notifier = notifierService;
-                this.validForm();
+              private activatedRoute: ActivatedRoute,
+              private cd: ChangeDetectorRef) {
+                this.notifier = notifierService;                
+                if( typeof sessionStorage.getItem('session') !=  null){      
+                  this.collaborator = JSON.parse( sessionStorage.getItem('session') as any ) as Collaborator;
+                  this.validForm();   
+                }
               }
 
   ngOnInit(): void {
 
-    //localStorage.setItem('action', 'find');
-    
     this.action = localStorage.getItem('action');
     
     switch (this.action) {
       case 'find':
 
-
-          this.findMovieById( 1 );
+        if( localStorage.getItem('id') != null ){      
+          this.id = JSON.parse( localStorage.getItem('id') as any ) as number;
+          this.findMovieById( this.id );
+        }         
 
         break;
     
@@ -85,12 +94,17 @@ export class MovieManagerComponent implements OnInit {
   }, 1000 );
 
   onSubmit(){
+    //console.log( `Form is ${this.formMovie.invalid}` );
+    //console.log(!this.formMovie.value);
+    //console.log(this.formMovie.controls);
+    
     // Form is valid
-    if(this.formMovie.invalid){
+    if(!this.formMovie.invalid){
       console.log(this.formMovie.value);
 
       switch (this.action) {
         case 'save':
+          console.log( this.formMovie.value );
             this.createMovie({
               name:             this.formMovie.value.name,
               description:      this.formMovie.value.description,
@@ -139,10 +153,12 @@ export class MovieManagerComponent implements OnInit {
   updateMovie(movie: {}){
     this.restApi.updateMovie( movie ).subscribe((data: {}) => {
       if(data != null || data == undefined){  
-        this.showNotification('success', 'Filme adicionado!!!');
+        this.showNotification('success', 'Filme atualizado!!!');
         this.hideOldestNotification();
+        localStorage.setItem('action', 'save');
+        this.router.navigate(['info']);
       }else{
-        this.showNotification('error', 'Erro ao adicionar filme!!!')
+        this.showNotification('error', 'Erro ao atualizar filme!!!')
       }
     });
   };
@@ -154,11 +170,11 @@ export class MovieManagerComponent implements OnInit {
       description:      ['', Validators.required],
       sinopse:          ['', Validators.required],
       genre:            [this.optionGenre[0].name, Validators.required],
-      avaliation:       [0, Validators.required],
+      avaliation:       [0, ''],
       authors:          ['', Validators.required],
-      year:             [0, Validators.required],
-      collaborator_id:  [1, Validators.required],
-      url:              ['', Validators.required],
+      year:             [0, Validators.required],      
+      collaborator_id:  [this.collaborator!.id, Validators.required],
+      url:              [null, ''],
     });
   };
 
@@ -180,20 +196,38 @@ export class MovieManagerComponent implements OnInit {
 	}
 
   inputFileChange( event: any ){
-    console.log( `adicionado algo` )
+    //console.log( `adicionado algo` )
 
     console.log( event.target.files[0] )
     // Verifica se tem algum arquivo
     if( event.target.files && event.target.files[0] ){
-      const foto = event.target.files[0];
+      //const foto = event.target.files[0];
+      //this.file = foto;
+      //const formData = new FormData();
+      //formData.append('imagem', foto);
+      
+      //this.restApi.uploadImage( formData ).subscribe((data: {}) => {
+        //console.log( data )
+      //});
+      
+      let reader = new FileReader();
+      const [file] = event.target.files;
+      reader.readAsDataURL(file);
+    
+      reader.onload = () => {
+        this.formMovie.patchValue({
+          url: reader.result
+        });
+        
+        // need to run CD since file load runs outside of zone
+        this.cd.markForCheck();
+      };
+    } 
+  } 
 
-      const formData = new FormData();
-      formData.append('imagem', foto);
-
-      this.restApi.uploadImage( formData ).subscribe((data: {}) => {
-        console.log( data )
-      });
-    }
+  // Verificacao campos obrigatórios
+  get requiredFiels(){
+    return this.formMovie.controls;
   }
 
 }

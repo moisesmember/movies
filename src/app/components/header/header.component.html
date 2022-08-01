@@ -1,21 +1,19 @@
 <!-- HEADER -->
 <header>
     <div class="netflixLogo">
-      <a id="logo" href="#home"><img src="../../../assets/img/creathus-logo.png" alt="Logo Image"></a>
+      <a id="logo" href="#home" [routerLink]="['/list']"><img src="../../../assets/img/creathus-logo.png" alt="Logo Image"></a>
     </div>      
     <nav class="main-nav">                
-      <a href="#home" style="font-size: 25px;">Cat&aacute;logo de filmes</a>
-      <!--<a href="#tvShows">TV Shows</a>
-      <a href="#movies">Movies</a>
-      <a href="#originals">Originals</a>
-      <a href="#">Recently Added</a>
-      <a target="_blank" href="https://codepen.io/cb2307/full/NzaOrm">Portfolio</a>   -->     
+      <a href="#home" [routerLink]="['/list']" style="font-size: 25px;">Cat&aacute;logo de filmes</a>
     </nav>
     <nav class="sub-nav">
+      <a  *ngIf="this.collaborator" (click)="post()">Postar Filme</a>
       <a href="#"><i class="fas fa-search sub-nav-logo"></i></a>
       <a href="#"><i class="fas fa-bell sub-nav-logo"></i></a>
-      <a href="#">Cadastrar filmes</a>        
-      <a href="#">Account</a>        
+      <!--<a href="#">Cadastrar filmes</a>  -->  
+                    
+      <a href="#">Usuário: {{ collaborator!.username }} </a>    
+      <a href="#" (click)="logoff()">Sair</a>      
     </nav>      
   </header>
   <!-- END OF HEADER -->

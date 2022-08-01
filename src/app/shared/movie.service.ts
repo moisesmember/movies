@@ -44,12 +44,25 @@ export class MovieService {
   }
 
   public updateMovie( movie: any ): Observable<Movie>{
-    return this.http.put<Movie>(`${this.apiURL}movies/${movie.id}`,JSON.stringify(movie),this.httpOptions)
+    /*return this.http.put<Movie>(`${this.apiURL}movies/${movie.id}`,JSON.stringify(movie),this.httpOptions)
+                    .pipe(
+                      retry(1),
+                      catchError(this.handleError)
+                    );*/
+    return this.http.patch<Movie>(`${this.apiURL}movies/${movie.id}`,JSON.stringify(movie),this.httpOptions)
                     .pipe(
                       retry(1),
                       catchError(this.handleError)
                     );
-  } 
+  }
+  
+  public deleteMovie( id: number ): Observable<any>{
+    return this.http.delete<any>(`${this.apiURL}movies/${id}`,{})
+                    .pipe(
+                      retry(1),
+                      catchError(this.handleError)
+                    );
+  }
 
   public uploadImage( file: FormData ){
     return this.http.post<FormData>(`${this.apiURL}images`, file, {

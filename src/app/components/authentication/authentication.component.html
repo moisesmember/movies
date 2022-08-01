@@ -2,9 +2,9 @@
     <div class="account-page">
         <div class="account-center">
             <div class="account-box">
-                <form lass="needs-validation" [formGroup]="formLogin" (ngSubmit)="login()" novalidate class="form-signin">
+                <form lass="needs-validation" [formGroup]="formLogin" (ngSubmit)="login()" novalidate class="form-signin" *ngIf="typeForma == 'login'">
                     <div class="account-logo">
-                        <a href="index.html"><img src="assets/img/logo-dark.png" alt=""></a>
+                        <a href="index.html"><img src="../../../assets/img/creathus-logo.png" alt=""></a>
                     </div>
                     <div class="form-group">
                         <label>Username ou Email</label>
@@ -15,16 +15,40 @@
                         <input type="password" [(ngModel)]="loginCredentials.password" formControlName="password" class="form-control">
                     </div>
                     <div class="form-group text-right">
-                        <a href="forgot-password.html">Forgot your password?</a>
+                        <a href="forgot-password.html">Esqueci minha senha?</a>
                     </div>
                     <div class="form-group text-center">
-                        <button type="submit" class="btn btn-primary account-btn">Login</button>
+                        <button type="submit" class="btn btn-primary account-btn" style="background: #ffa500;">Acessar</button>
                     </div>
                     <div class="text-center register-link">
-                        Não possui uma conta? <a href="register.html">Registrar-se</a>
+                        Não possui uma conta? <a href="" (click)="redirect('register')">Registrar-se</a>
                     </div>
                 </form>
-            </div>
+
+                <form lass="needs-validation" [formGroup]="formLogin" (ngSubmit)="register()" novalidate class="form-signin" *ngIf="typeForma == 'register'">
+                    <div class="account-logo">
+                        <a href="index.html"><img src="../../../assets/img/creathus-logo.png" alt=""></a>
+                    </div>
+                    <div class="form-group">
+                        <label>Nome</label>
+                        <input type="text" autofocus="" [(ngModel)]="registerCredentials.name" formControlName="username" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Username ou Email</label>
+                        <input type="text" autofocus="" [(ngModel)]="registerCredentials.username" formControlName="username" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Senha</label>
+                        <input type="password" [(ngModel)]="registerCredentials.password" formControlName="password" class="form-control">
+                    </div>                    
+                    <div class="form-group text-center">
+                        <button type="submit" class="btn btn-primary account-btn" style="background: #ffa500;">Registrar</button>
+                    </div>
+                    <div class="text-center register-link">
+                        Já possui uma conta? <a href="" (click)="redirect('login')">Acessar</a>
+                    </div>
+                </form>
+            </div>            
         </div>
     </div>
 </div>
